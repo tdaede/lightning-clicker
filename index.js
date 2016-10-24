@@ -1,3 +1,4 @@
+const config = require('./config.json');
 const express = require('express');
 const app = express();
 app.use(express.static('public'));
@@ -7,7 +8,7 @@ const db = new sqlite3.Database('clickers.sqlite3',function(){
   db.run('CREATE TABLE IF NOT EXISTS `users` ( `id` INTEGER, `creation` INTEGER, `json` BLOB, PRIMARY KEY(`id`) )');
   db.run('CREATE TABLE IF NOT EXISTS "invoices" ( `label` INTEGER PRIMARY KEY AUTOINCREMENT, `user` INTEGER, `product` TEXT, `created` INTEGER )');
 });
-const l = jayson.client.tcp({path: '/home/thomas/.lightning2/lightning-rpc'});
+const l = jayson.client.tcp({path: config.rpc});
 
 const products = {
   'click': {
@@ -138,8 +139,8 @@ app.get('/get_invoice',function(req,res) {
   });
 });
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
+app.listen(config.port, function () {
+  console.log('lightning-clicker listening on port',config.port);
 });
 
 setInterval(function() {
