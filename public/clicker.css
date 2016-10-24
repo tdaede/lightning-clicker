@@ -1,0 +1,48 @@
+body {
+    background: repeating-linear-gradient(0deg,purple,blue 20px,purple 40px);
+    background-size: 40px 40px;
+}
+
+div {
+    background-color: white;
+    max-width: 600px;
+    margin: auto;
+    padding: 10px;
+}
+
+#userid {
+    font-size: 40px;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    font-style: italic;
+    text-shadow: white 0px 0px 3px;
+    font-size: 50px;
+}
+
+.term {
+    background-color: pink;
+    font-family: monospace;
+}
+
+.count {
+    font-size: 50px;
+    display: inline-block;
+    min-width: 40px;
+}
+
+#click > .count {
+    font-size: 50px;
+}
+
+.label {
+    font-size: 50px;
+    display: inline-block;
+    width: 60px;
+}
+
+#click > .label {
+    font-size: 50px;
+}

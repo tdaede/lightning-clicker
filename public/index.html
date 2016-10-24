@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Lightning Clicker</title>
+    <script src="jquery-3.1.1.min.js"></script>
+    <script src="clicker.js"></script>
+    <link href="clicker.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Lightning Clicker</h1>
+    <div>Welcome user number <span id="userid"></span>!</div>
+    <div id="paybox" style="display: none;">
+    <p>You have selected a <span class="invoice_product"></span>, which costs <span class="invoice_amount"></span> millisatoshis.
+    <p>To pay, you will need to open a lightning channel to this server, port 6331, if you haven't already. Then run the following command:
+    <p class="term">contrib/lightning-pay 0218e799f5085d90716493c0f9b5b7373ae47a0fb0c8cfba7411786f216e0ed15a <span id="amount"></span> <span id="rhash"></span>
+    <p>Status: <span id="invoice_status">waiting</span>
+    </div>
+    <div id="paidbox" style="display: none;">
+      <p>You have sucessfully purchased a <span class="invoice_product"></span>!
+      </div>
+    <div id="userdata">
+      <div id="click"><span class="label">🖱</span> <span class="count"></span><button onClick="create_invoice('click');">Buy click</button></div>
+      <div id="clicker"><span class="label">🐁</span> <span class="count"></span><button onClick="create_invoice('clicker');">Buy clicker</button></div>
+      <div id="strong"><span class="label">💪</span> <span class="count"></span><button onClick="create_invoice('strong');">Buy strong clicker</button></div>
+      <div id="clicker100"><span class="label">💯</span> <span class="count"></span><button onClick="create_invoice('clicker100');">Buy 100x clicker</button></div>
+      <div id="meme"><span class="label">😂</span> <span class="count"></span><button onClick="create_invoice('meme');">Buy meme</button></div>
+      <div id="taco"><span class="label">🌮</span> <span class="count"></span><button onClick="create_invoice('taco');">Buy taco</button></div>
+      <div id="postoffice"><span class="label">🏣</span> <span class="count"></span><button onClick="create_invoice('postoffice');">Buy post office</button></div>
+      <div id="sushi"><span class="label">🍣</span> <span class="count"></span><button onClick="create_invoice('sushi');">Buy sushi</button></div>
+    </div>
+</body>
+</html>
