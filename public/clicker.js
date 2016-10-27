@@ -50,8 +50,8 @@ function update_invoice() {
 function update_stats() {
   update_invoice();
   $.get('/user',{userid:userid},function(data) {
-    for (const product in data.products) {
-      const row = $('#'+product);
+    for (var product in data.products) {
+      var row = $('#'+product);
       row.children('.count').html(parseInt(data.products[product]));
     }
   });
