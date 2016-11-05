@@ -133,7 +133,7 @@ app.get('/get_invoice',function(req,res) {
     if (!err) {
       if (!sent) {
         sent = true;
-        res.send(response.result);
+        res.send(response.result[0]);
       }
     }
   });
