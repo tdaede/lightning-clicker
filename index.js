@@ -161,7 +161,7 @@ setInterval(function() {
             console.log(err);
           } else {
             if (response.result) {
-              if (response.result.complete) {
+              if (response.result[0].complete) {
                 console.log('Purchase complete!', dbinvoice);
                 db.run('DELETE FROM invoices WHERE label = ?',dbinvoice.label)
                 purchase_product(dbinvoice.user,dbinvoice.product);
