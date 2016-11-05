@@ -160,12 +160,14 @@ setInterval(function() {
           if(err) {
             console.log(err);
           } else {
-            if (response) {
+            if (response.result) {
               if (response.result.complete) {
                 console.log('Purchase complete!', dbinvoice);
                 db.run('DELETE FROM invoices WHERE label = ?',dbinvoice.label)
                 purchase_product(dbinvoice.user,dbinvoice.product);
               }
+            } else {
+              console.log('Error processing invoice',dbinvoice.label,response);
             }
           }
         });
