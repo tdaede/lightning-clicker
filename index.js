@@ -146,19 +146,30 @@ app.listen(config.port, function () {
 setInterval(function() {
   db.all('SELECT * from invoices',function(err,rows) {
     for (dbinvoice of rows) {
-      l.request('listinvoice',{label:String(dbinvoice.label)}, function(err, response) {
-        if(err) {
-          console.log(err);
-        } else {
-          if (response) {
-            if (response.result.complete) {
-              console.log('Purchase complete!', dbinvoice);
-              db.run('DELETE FROM invoices WHERE label = ?',dbinvoice.label)
-              purchase_product(dbinvoice.user,dbinvoice.product);
+      if ((Date.now()/1000 - dbinvoice.created) > 3600) {
+        // delete invoices more than 1 hour old
+        console.log('Deleting invoice',dbinvoice.label);
+        l.request('delinvoice',{label:String(dbinvoice.label)},null,function(err){
+          if(err) {
+            console.log('Couldn\'t delete invoice',dbinvoice.label,err);
+          }
+        });
+        db.run('DELETE FROM invoices WHERE label = ?',dbinvoice.label);
+      } else {
+        l.request('listinvoice',{label:String(dbinvoice.label)}, function(err, response) {
+          if(err) {
+            console.log(err);
+          } else {
+            if (response) {
+              if (response.result.complete) {
+                console.log('Purchase complete!', dbinvoice);
+                db.run('DELETE FROM invoices WHERE label = ?',dbinvoice.label)
+                purchase_product(dbinvoice.user,dbinvoice.product);
+              }
             }
           }
-        }
-      });
+        });
+      }
     }
   });
 }, 2000);
