@@ -43,6 +43,12 @@ h1 {
     width: 60px;
 }
 
+.desc {
+    font-size: 12px;
+    display: inline-block;
+    width: 180px;
+}
+
 #click > .label {
     font-size: 50px;
 }
